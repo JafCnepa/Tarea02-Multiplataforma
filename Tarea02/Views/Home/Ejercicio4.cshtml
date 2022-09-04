@@ -1,0 +1,38 @@
+﻿@model Persona
+@{
+    ViewData["Title"] = "Ejercicio4";
+}
+@{
+    var peso = 60.3;
+    var estatura = 1.72;
+    var IMC = peso / (estatura * estatura);
+    var grado = "";
+}
+<div class="text-center">
+  
+    @if(IMC >= 27)
+    {
+        grado = "Obesidad";
+    }else if(IMC >= 25)
+    {
+        grado = "Sobrepeso";
+    }else if (IMC >= 20)
+    {
+        grado = "Normal";
+    }
+    else
+    {
+        grado = "Delgado";
+    }
+
+     <div class="card text-center text-dark bg-info mb-3">
+  <div class="card-body">
+    <h5 class="card-title">Jafet Cánepa</h5>
+    <p class="card-text"><h5>@Model.Name del sexo @Model.Sex de @Model.Age años</h5></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h5>Pesa:@peso kilogramos y mide:@estatura metros</h5></li>
+    <li class="list-group-item"><h5>Su indice de masa corporal (IMC):</h5> <h5 class="text-primary">@grado</h5></li>
+  </ul>
+</div>
+</div>

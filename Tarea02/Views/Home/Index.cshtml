@@ -1,0 +1,32 @@
+﻿@model Alumno
+@{
+    ViewData["Title"] = "Ejercicio1";
+}
+@{
+    Random ran = new Random();
+    var nota = ran.Next(0, 21); //return random numbers between 0-20
+    var categoria = "";
+
+}
+<div class="text-center">
+       
+    @if(nota >= 17){
+        categoria = "A";
+    }else if(nota >= 14){
+        categoria = "B";
+    }else if(nota >= 12){
+        categoria = "C";
+    }else{
+        categoria = "D";
+    }
+     
+    <div class="card text-center text-dark bg-info mb-3">
+  <div class="card-body">
+    <p class="card-text">El alumno @Model.Name con Id @Model.Id del Curso @Model.Course</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h5>Pertenece a la Categoria: </h5><h5 class="text-primary">@categoria</h5></li>
+    <li class="list-group-item"><h5>Debido a que su nota es : </h5><h5 class="text-primary">@nota</h5></li>
+  </ul>
+</div>
+</div>

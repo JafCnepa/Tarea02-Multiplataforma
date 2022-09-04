@@ -1,0 +1,67 @@
+﻿@model Supermercado
+@{
+    ViewData["Title"] = "Ejercicio2";
+}
+@{
+    var ran = new Random();
+    var categoria = ran.Next(1, 5); //0-4
+    var marca = "";
+    var ipdesc = 0.0;//double
+    var ipcompra = 0.0;    
+    var litros = ran.Next(1,11);//1-10
+    
+}
+<div class="text-center">
+        
+    @switch (categoria)
+    //asignando la marca de acuerdo el ejercicio
+    {
+       case 1: marca = "Primor";break;
+       case 2: marca = "Girasol";break;
+       case 3: marca = "Cil";break;
+       case 4: marca = "Cocinero";break;
+    }
+    <!--importe de compra-->
+    @if(categoria == 1)
+    {
+        ipcompra = 5.99 * litros;
+    }else if(categoria == 2)
+    {
+        ipcompra = 5.50 * litros;
+    }else if(categoria == 3)
+    {
+        ipcompra = 4.50 * litros;
+    }else if(categoria == 4){
+        ipcompra = 4.70 * litros;
+    }
+    <!--importe de descuento-->
+    @if (litros >= 10)
+    {
+        ipdesc = 0.125 * ipcompra;
+    }else if(litros >= 7)
+    {
+        ipdesc = 0.10 * ipcompra;
+    }else if(litros >= 4)
+    {
+        ipdesc = 0.075 * ipcompra;
+    }else{
+        ipdesc = 0.05 * ipcompra;
+    }
+    <!--importe a pagar-->
+@{
+    var ippagar = ipcompra - ipdesc;
+}
+   <div class="card text-center text-dark bg-info mb-3">
+  <div class="card-body">
+    <p class="card-text">El importe de la compra realizado en el supermercado @Model.name de @Model.lugar : S/.@ipcompra</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h5>El importe del descuento: </h5><h5 class="text-primary">S/.@ipdesc</h5></li>
+    <li class="list-group-item"><h5>Asi que el importe a pagar por la compra es </h5><h5 class="text-primary">S/.@ippagar </h5></li>
+    <li class="list-group-item"><h5>Debido a la cantidad de litros fue @litros litros de la marca de aceite @marca </h5></li>
+  </ul>
+</div>
+
+</div>
+
+
